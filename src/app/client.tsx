@@ -2,24 +2,19 @@
 
 import { useEffect, useState } from 'react'
 import styles from './styles/home.module.scss'
-import { IUser, Users } from '@/features/users'
+import { Users } from '@/features/users'
 import { LoadingSpinner } from '@/components/loading-spinner'
 import { useUsers } from '@/hooks'
-
-interface IReq {
-	list: IUser[]
-	patination: {
-		current: number
-		nextPage: number
-		pageSize: number
-		previousPage: number
-		total: number
-	}
-}
+import { useUserHistory } from '@/stores'
 
 export const HomeClient = () => {
 	const [page, setPage] = useState(1)
 	const { users, hasNextPage, loading, isError, error } = useUsers(page)
+	const clearHistory = useUserHistory(state => state.clearHistory)
+
+	useEffect(() => {
+		clearHistory()
+	}, [clearHistory])
 
 	return (
 		<div className={styles.container}>

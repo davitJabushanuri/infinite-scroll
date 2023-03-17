@@ -1,20 +1,20 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
-
-import styles from './styles/user-details.module.scss'
-import { IFullUser, IUser } from '../types'
 import Image from 'next/image'
+
+import { IFullUser } from '../types'
 import { LoadingSpinner } from '@/components/loading-spinner'
 import { UserInfo } from './user-info'
 import { UserAddress } from './user-address'
 import { UserFriends } from './user-friends'
+import { UserHistory } from './user-history'
+import styles from './styles/user-details.module.scss'
 
 export const UserDetails = () => {
 	const pathname = usePathname()
 	const userId = pathname.split('/')[2]
 	const [user, setUser] = useState<IFullUser | null>(null)
-	console.log(user)
 
 	useEffect(() => {
 		const fetchUser = async () => {
@@ -55,6 +55,10 @@ export const UserDetails = () => {
 				<div className={styles.address}>
 					<UserAddress address={user?.address} />
 				</div>
+			</div>
+
+			<div className={styles.history}>
+				<UserHistory />
 			</div>
 
 			<div className={styles.friends}>

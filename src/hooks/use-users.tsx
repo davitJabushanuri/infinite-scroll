@@ -19,7 +19,12 @@ export const useUsers = (page: number, userId?: string) => {
 
 		axios
 			.get(
-				`${URL}/user/${userId ? `${userId}/friends/` : ''}${page}/${pageSize}`
+				`${URL}/user/${userId ? `${userId}/friends/` : ''}${page}/${pageSize}`,
+				{
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				}
 			)
 			.then(res => {
 				setUsers(prev => {
@@ -31,6 +36,7 @@ export const useUsers = (page: number, userId?: string) => {
 				setLoading(false)
 			})
 			.catch(err => {
+				setLoading(false)
 				setIsError(true)
 				setError(err.message)
 			})
