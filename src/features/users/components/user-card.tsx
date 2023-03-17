@@ -1,22 +1,22 @@
 import Image from 'next/image'
 import styles from './styles/user-card.module.scss'
+import { IUser } from '../types'
 
-export const UserCard = ({
-	avatar,
-	name,
-	position,
-}: {
-	avatar: string
-	name: string
-	position: string
-}) => {
+export const UserCard = ({ user }: { user: IUser }) => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.avatar}>
-				<Image src={avatar} alt='user avatar' width={200} height={200} />
+				<Image
+					src={user?.imageUrl}
+					alt='user avatar'
+					width={200}
+					height={200}
+				/>
 			</div>
-			<h1 className={styles.name}>{name}</h1>
-			<p className={styles.position}>{position}</p>
+			<h3
+				className={styles.name}
+			>{`${user?.prefix} ${user?.name} ${user?.lastName}`}</h3>
+			<p className={styles.position}>{user?.title}</p>
 		</div>
 	)
 }
