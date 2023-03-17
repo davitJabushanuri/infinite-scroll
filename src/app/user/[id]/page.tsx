@@ -1,5 +1,7 @@
+import { UserCLientPage } from './client'
+
 const UserPage = () => {
-	return <div>user page</div>
+	return <UserCLientPage />
 }
 
 export default UserPage

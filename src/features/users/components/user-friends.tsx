@@ -1,25 +1,9 @@
-'use client'
-
 import { useEffect, useState } from 'react'
-import styles from './styles/home.module.scss'
-import { IUser, Users } from '@/features/users'
+import { IUser } from '../types'
 import { LoadingSpinner } from '@/components/loading-spinner'
+import { Users } from './users'
 
-interface IReq {
-	list: IUser[]
-	patination: {
-		current: number
-		nextPage: number
-		pageSize: number
-		previousPage: number
-		total: number
-	}
-}
-
-const URL =
-	'http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/1/20'
-
-export const HomeClient = () => {
+export const UserFriends = ({ userId }: { userId: string }) => {
 	const [users, setUsers] = useState<IUser[]>([])
 	const [isFetching, setIsFetching] = useState(false)
 	const [page, setPage] = useState(1)
@@ -29,7 +13,7 @@ export const HomeClient = () => {
 		const fetchUsers = async () => {
 			setIsFetching(true)
 			const response = await fetch(
-				`http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${page}/${pageSize}`
+				`http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${userId}/friends/${page}/${pageSize}`
 			)
 			const users = await response.json()
 			setUsers(prev => prev.concat(users.list))
@@ -37,13 +21,10 @@ export const HomeClient = () => {
 		}
 
 		fetchUsers()
-	}, [page])
-
+	}, [page, userId])
 	return (
-		<div className={styles.container}>
-			<div className={styles.users}>
-				{users?.length > 0 && <Users users={users} />}
-			</div>
+		<div>
+			<div>{users?.length > 0 && <Users users={users} />}</div>
 
 			{isFetching && <LoadingSpinner />}
 
