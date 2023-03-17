@@ -54,6 +54,7 @@ export const UserDetails = () => {
 			</div>
 
 			<div className={styles.friends}>
+				<h3>Friends:</h3>
 				<UserFriends userId={userId} />
 			</div>
 		</div>

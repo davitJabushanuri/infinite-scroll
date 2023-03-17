@@ -1,4 +1,28 @@
 .container {
-  display: flex;
-  flex-wrap: wrap;
+  padding: 1rem;
+
+  .history {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 11px;
+
+    a {
+      text-decoration: none;
+      color: rgb(73, 73, 247);
+
+      &:hover {
+        color: rgb(52, 52, 250);
+      }
+    }
+
+    a:not(:first-child) {
+      &::before {
+        content: '>';
+        margin-right: 11px;
+        color: #fff;
+      }
+    }
+
+
+  }
 }

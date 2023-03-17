@@ -8,14 +8,16 @@ export const UserCard = ({ user }: { user: IUser }) => {
 	const router = useRouter()
 	const addHistory = useUserHistory(state => state.addHistory)
 
+	console.log(user)
+
 	return (
 		<div
 			onClick={() => {
+				router.push(`/user/${user?.id}`)
 				addHistory({
 					id: user?.id,
 					name: `${user?.prefix} ${user?.name} ${user?.lastName}`,
 				})
-				router.push(`/user/${user?.id}`)
 			}}
 			className={styles.container}
 		>

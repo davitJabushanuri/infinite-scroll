@@ -1,5 +1,6 @@
 import { useUserHistory } from '@/stores'
 import styles from './styles/user-history.module.scss'
+import Link from 'next/link'
 
 export const UserHistory = () => {
 	const history = useUserHistory(state => state.history)
@@ -9,13 +10,16 @@ export const UserHistory = () => {
 
 	return (
 		<div className={styles.container}>
-			{history.map((item, index) => {
-				return (
-					<div key={index} className={styles.item}>
-						<span>{item.name}</span>
-					</div>
-				)
-			})}
+			<h3>History:</h3>
+			<div className={styles.history}>
+				{history.map((user, index) => {
+					return (
+						<Link href={`/user/${user.id}`} key={index}>
+							<span>{user.name}</span>
+						</Link>
+					)
+				})}
+			</div>
 		</div>
 	)
 }
