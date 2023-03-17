@@ -17,12 +17,25 @@ export const UserInfo = ({
 }) => {
 	return (
 		<div className={styles.container}>
-			<h3 className={styles.name}>{fullName}</h3>
-			<p className={styles.position}>{position}</p>
-			<p className={styles.email}>Email: {email}</p>
-			<p className={styles.ipAddress}>IP Address: {ipAddress}</p>
-			<p className={styles.jobArea}>Job Area: {jobArea}</p>
-			<p className={styles.jobType}>Job Type: {jobType}</p>
+			<h3>Info</h3>
+			<p className={styles.name}>
+				<span>name:</span> {fullName}
+			</p>
+			<p className={styles.position}>
+				<span>position:</span> {position}
+			</p>
+			<p className={styles.email}>
+				<span>Email:</span> {email}
+			</p>
+			<p className={styles.ipAddress}>
+				<span>IP Address:</span> {ipAddress}
+			</p>
+			<p className={styles.jobArea}>
+				<span>Job Area:</span> {jobArea}
+			</p>
+			<p className={styles.jobType}>
+				<span>Job Type:</span> {jobType}
+			</p>
 		</div>
 	)
 }

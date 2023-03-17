@@ -37,20 +37,16 @@ export const UserDetails = () => {
 					/>
 				</div>
 
-				<div className={styles.info}>
-					<UserInfo
-						fullName={`${user?.prefix} ${user?.name} ${user?.lastName}`}
-						position={user?.title}
-						email={user?.email}
-						ipAddress={user?.ip}
-						jobArea={user?.jobArea}
-						jobType={user?.jobType}
-					/>
-				</div>
+				<UserInfo
+					fullName={`${user?.prefix} ${user?.name} ${user?.lastName}`}
+					position={user?.title}
+					email={user?.email}
+					ipAddress={user?.ip}
+					jobArea={user?.jobArea}
+					jobType={user?.jobType}
+				/>
 
-				<div className={styles.address}>
-					<UserAddress address={user?.address} />
-				</div>
+				<UserAddress address={user?.address} />
 			</div>
 
 			<div className={styles.history}>

@@ -1,0 +1,26 @@
+.container {
+  background-color: #1a1c1e;
+  padding: 1rem;
+  border-radius: 12px;
+
+  h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 11px;
+
+    span {
+      display: inline-block;
+      color: #c5c5c5;
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
+}
