@@ -1,16 +1,14 @@
 'use client'
-import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 
-import { IFullUser } from '../types'
 import { LoadingSpinner } from '@/components/loading-spinner'
 import { UserInfo } from './user-info'
 import { UserAddress } from './user-address'
 import { UserFriends } from './user-friends'
 import { UserHistory } from './user-history'
 import styles from './styles/user-details.module.scss'
-import { useUser } from '@/hooks'
+import { useUser } from '@/features/users/hooks'
 
 export const UserDetails = () => {
 	const pathname = usePathname()

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { LoadingSpinner } from '@/components/loading-spinner'
 import { Users } from './users'
-import { useUsers } from '@/hooks'
+import { useUsers } from '@/features/users/hooks'
 
 export const UserFriends = ({ userId }: { userId: string }) => {
 	const [page, setPage] = useState(1)
