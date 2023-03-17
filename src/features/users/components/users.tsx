@@ -7,12 +7,12 @@ export const Users = ({
 	users,
 	loading,
 	setPage,
-	hasMore,
+	hasNextPage,
 }: {
 	users: IUser[]
 	loading: boolean
 	setPage: (page: number) => void
-	hasMore: boolean
+	hasNextPage: boolean
 }) => {
 	const observer = useRef<IntersectionObserver>()
 
@@ -22,14 +22,14 @@ export const Users = ({
 
 			if (observer.current) observer.current?.disconnect()
 			observer.current = new IntersectionObserver(entries => {
-				if (entries[0].isIntersecting && hasMore) {
+				if (entries[0].isIntersecting && hasNextPage) {
 					// @ts-ignore
 					setPage(prev => prev + 1)
 				}
 			})
 			if (node) observer.current.observe(node)
 		},
-		[loading, hasMore, setPage]
+		[loading, hasNextPage, setPage]
 	)
 
 	return (
@@ -38,16 +38,16 @@ export const Users = ({
 				users?.map((user, index) => {
 					if (users?.length === index + 1) {
 						return (
-							<div ref={lastUserRef} key={user?.id}>
+							<div ref={lastUserRef} key={index}>
 								<UserCard user={user} />
 							</div>
 						)
-					}
-					return (
-						<div key={user?.id}>
-							<UserCard user={user} />
-						</div>
-					)
+					} else
+						return (
+							<div key={index}>
+								<UserCard user={user} />
+							</div>
+						)
 				})}
 		</div>
 	)
