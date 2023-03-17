@@ -42,18 +42,17 @@ export const HomeClient = () => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.users}>
-				{users?.length > 0 && <Users users={users} />}
+				{users?.length > 0 && (
+					<Users
+						users={users}
+						loading={isFetching}
+						setPage={setPage}
+						hasMore={true}
+					/>
+				)}
 			</div>
 
 			{isFetching && <LoadingSpinner />}
-
-			<button
-				onClick={() => {
-					setPage(page + 1)
-				}}
-			>
-				fetch users
-			</button>
 		</div>
 	)
 }

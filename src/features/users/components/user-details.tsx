@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 
 import styles from './styles/user-details.module.scss'
-import { IUser } from '../types'
+import { IFullUser, IUser } from '../types'
 import Image from 'next/image'
 import { LoadingSpinner } from '@/components/loading-spinner'
 import { UserInfo } from './user-info'
@@ -13,7 +13,7 @@ import { UserFriends } from './user-friends'
 export const UserDetails = () => {
 	const pathname = usePathname()
 	const userId = pathname.split('/')[2]
-	const [user, setUser] = useState<IUser | null>(null)
+	const [user, setUser] = useState<IFullUser | null>(null)
 	console.log(user)
 
 	useEffect(() => {
@@ -42,11 +42,18 @@ export const UserDetails = () => {
 				</div>
 
 				<div className={styles.info}>
-					<UserInfo />
+					<UserInfo
+						fullName={`${user?.prefix} ${user?.name} ${user?.lastName}`}
+						position={user?.title}
+						email={user?.email}
+						ipAddress={user?.ip}
+						jobArea={user?.jobArea}
+						jobType={user?.jobType}
+					/>
 				</div>
 
 				<div className={styles.address}>
-					<UserAddress />
+					<UserAddress address={user?.address} />
 				</div>
 			</div>
 

@@ -24,17 +24,18 @@ export const UserFriends = ({ userId }: { userId: string }) => {
 	}, [page, userId])
 	return (
 		<div>
-			<div>{users?.length > 0 && <Users users={users} />}</div>
+			<div>
+				{users?.length > 0 && (
+					<Users
+						users={users}
+						loading={isFetching}
+						setPage={setPage}
+						hasMore={true}
+					/>
+				)}
+			</div>
 
 			{isFetching && <LoadingSpinner />}
-
-			<button
-				onClick={() => {
-					setPage(page + 1)
-				}}
-			>
-				fetch users
-			</button>
 		</div>
 	)
 }
